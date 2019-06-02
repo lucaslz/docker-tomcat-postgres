@@ -1,0 +1,42 @@
+version: '3'
+services:
+    db-postgres:
+        image: postgres:9.5
+        restart: always
+        container_name: db-postgres
+        ports:
+            - "5432:5432"
+        networks: 
+            - net-java-server
+        volumes:
+            - data-db-postgres:/var/lib/postgresql/data
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            POSTGRES_PASSWORD: teste
+    server-tomcat:
+        image: tomcat:9.0
+        restart: always
+        container_name: server-tomcat
+        ports:
+            - "8081:80"
+        networks: 
+            - net-java-server
+        volumes:
+            - ./www:/usr/local/tomcat/webapps
+            - /etc/localtime:/etc/localtime:ro
+    pgadmin:
+        image: dpage/pgadmin4
+        restart: always
+        container_name: service-pgadmin4
+        networks: 
+            - net-java-server
+        ports:
+            - "8082:80"
+        environment:
+            PGADMIN_DEFAULT_EMAIL: teste@teste.com
+            PGADMIN_DEFAULT_PASSWORD: teste
+volumes:
+    data-db-postgres:
+networks:
+    net-java-server:
+            
