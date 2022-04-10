@@ -1,6 +1,8 @@
 # Serverdor Web
 
-O servidor contém as seguintes configurações
+Criando um sistema com Apache, Postgres e PgAdmin utilizando docker e docker-compose.
+
+O servidor contém as seguintes configurações::
 
 - Apache Tomcat 9.0
 - Postgres 9.5
